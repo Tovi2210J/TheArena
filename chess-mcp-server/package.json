@@ -1,0 +1,51 @@
+{
+  "name": "chess-mcp-server",
+  "version": "1.0.0",
+  "description": "MCP Server for Chess",
+  "main": "dist/app.js",
+  "bin": {
+    "chess-mcp-server": "dist/app.js"
+  },
+  "scripts": {
+    "start": "node dist/app.js",
+    "build": "tsc",
+    "dev": "tsc -w"
+  },
+  "keywords": [
+    "mcp",
+    "chess"
+  ],
+  "author": "fritzprix <innocentevil0914@gmail.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-username/chess-mcp-server.git"
+  },
+  "bugs": {
+    "url": "https://github.com/your-username/chess-mcp-server/issues"
+  },
+  "homepage": "https://github.com/your-username/chess-mcp-server#readme",
+  "files": [
+    "dist",
+    "public",
+    "src"
+  ],
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.17.2",
+    "express": "^4.19.2",
+    "ws": "^8.18.0",
+    "chess.js": "^1.0.0-beta.8",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.21",
+    "@types/ws": "^8.5.11",
+    "typescript": "^5.5.3"
+  }
+}

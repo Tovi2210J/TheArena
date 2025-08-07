@@ -1,0 +1,18 @@
+{
+  "name": "mcp-server-collection",
+  "version": "1.0.0",
+  "description": "Umbrella repository for multiple Model Context Protocol (MCP) server implementations, including Recursive Flow and Role-Playing MCP Server.",
+  "private": true,
+  "workspaces": [
+    "chess-mcp-server",
+    "recursive-flow",
+    "role-playing-mcp-server",
+    "rubiks-cube-mcp-server"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-org/mcp-server-collection.git"
+  },
+  "author": "fritzprix",
+  "license": "MIT"
+}
