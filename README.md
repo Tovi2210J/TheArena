@@ -161,18 +161,11 @@ See individual server directories for license information.
 
 ## 🗺️ Roadmap
 
-### ✅ 2025 First Half
-
-- Unified MCP server architecture and monorepo transition
-- Core functionality completion and deployment automation for all servers
-- License standardization and comprehensive documentation
-
 ### 🚧 2025 Second Half
 
 - New game servers optimized for reinforcement learning (RL) and AI experimentation
   - Examples: Sokoban, 2048, Sliding Puzzle, and other turn-based puzzle environments
 - Integrated dashboard and monitoring system across all servers
-- Enhanced integration with Claude Desktop and other AI platforms
 - Expanded examples and comprehensive tutorials
 
 ### 💡 Future Ideas & Proposals
